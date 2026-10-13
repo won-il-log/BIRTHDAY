@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday Princess 💖</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🎂</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="Happy Birthday Piano Version.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="heart-container" id="heart-container"></div>
+    <div id="transition-overlay" class="transition-layer"></div>
+
+    <section id="section-envelope" class="screen active bg-custom" style="background-image: url('hinh_bg_1.jpg');">
+        <div class="css-envelope bounce-anim" onclick="openEnvelope(this)">
+            <div class="envelope-back"></div>
+            <div class="envelope-paper">
+                <p class="romantic-font envelope-text">Gửi Công Chúa của anh 💌</p>
+            </div>
+            <div class="envelope-front"></div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-bow">
+                <div class="bow-left"></div>
+                <div class="bow-center"></div>
+                <div class="bow-right"></div>
+            </div>
+        </div>
+        <p class="hint-text fade-in-up" style="font-weight: 700; color: var(--pink-dark); position: absolute; bottom: 8%;">Bấm vào thiệp để mở nhé!</p>
+    </section>
+
+    <section id="section-greeting" class="screen bg-custom" style="background-image: url('hinh_bg_2.jpg');">
+        <div class="split-container fade-in-up">
+            <div class="split-left">
+                <div class="image-placeholder">
+                    <img src="N&N.jpg" alt="" id="left-img">
+                    <div class="placeholder-content">
+                        <span style="font-size: 40px;">🖼️</span>
+                        <p>Chèn hình em vào đây</p>
+                    </div>
+                </div>
+            </div>
+            <div class="split-right">
+                <h1 class="glow-text romantic-font title-large">Happy 20th Birthday! 🎂</h1>
+                <p class="subtitle typing-text">Chúc mừng tuổi 20 rực rỡ của em. Tuổi mới luôn rạng ngời và mãi là công chúa nhỏ của anh nhé...</p>
+            </div>
+        </div>
+        <div class="scroll-hint">Lướt chuột hoặc dùng phím Mũi tên ⬅ ➡ nhé 👇</div>
+    </section>
+
+    <section id="section-nail" class="screen bg-custom" style="background-image: url('hinh_bg_3.jpg');">
+        <div class="glass-box fade-in-up">
+            <h2 class="romantic-font title-medium">Kế hoạch làm Nail của Công Chúa 💅</h2>
+            <div class="nail-frame empty-frame">
+                <img id="nail-preview" src="" alt="">
+                <span id="nail-placeholder-text">Thêm mẫu nail em thích vào đây nha!</span>
+            </div>
+            <p id="nail-status" class="bold-text">Em có <span id="nail-chance" class="highlight-text">3</span> lần đổi ý để chọn mẫu nhé!</p>
+            <input type="file" id="nail-upload" accept="image/*" onchange="previewNail(event)">
+            <label for="nail-upload" id="nail-upload-btn" class="btn-pink pulse-anim">Tải ảnh mẫu Nail</label>
+        </div>
+    </section>
+
+    <section id="section-dresscode" class="screen bg-custom" style="background-image: url('hinh_bg_4.jpg');">
+        <div class="glass-box fade-in-up" style="max-width: 900px;">
+            <h2 class="romantic-font title-medium">Chọn Dresscode nhé 👗👔</h2>
+            <p class="mb-20">Em hãy bấm/di chuyển con trỏ trên vòng tròn để chọn 3 màu em thích nhé!</p>
+            
+            <div class="color-picker-section">
+                <div class="wheel-container">
+                    <canvas id="colorWheel" width="250" height="250"></canvas>
+                    <div id="colorCursor"></div>
+                </div>
+                <div class="picked-colors-container">
+                    <p style="font-weight: bold; margin-bottom: 10px;">Màu em đã chọn:</p>
+                    <div class="color-slots">
+                        <div class="color-slot" id="slot-1"></div>
+                        <div class="color-slot" id="slot-2"></div>
+                        <div class="color-slot" id="slot-3"></div>
+                    </div>
+                    <button class="btn-pink mt-20" onclick="confirmColor()">Xác nhận màu này</button>
+                    <button class="btn-outline mt-10" onclick="resetColors()">Chọn lại từ đầu</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-restaurant" class="screen bg-custom" style="background-image: url('hinh_bg_5.jpg');">
+        <div class="split-container fade-in-up" style="height: auto; max-width: 900px;">
+            <div class="split-left" style="background-image: url('Kobeya.jpg'); min-height: 400px; background-size: cover;"></div>
+            <div class="split-right align-left">
+                <h2 class="romantic-font title-medium" style="color: var(--pink-dark);">Kobeya Biên Hoà 🍣</h2>
+                <p>📍 <strong>Địa chỉ:</strong> [ 121 Đường N10, KDC D2D, Khu phố Vĩnh Thanh, Phường Trấn Biên, Đồng Nai]</p>
+                <p>🕰 <strong>Thời gian:</strong> 19:00</p>
+                <p class="mb-20">Hôm nay anh sẽ đưa em đi ăn món Nhật và chụp cho em những tấm hình xinh nhất!</p>
+                <a href="https://drive.google.com/drive/folders/1EQyLLUtu6foIc4fOHKGsPir9Gk3O-yIo" target="_blank" class="btn-pink">📖 Xem Menu nè</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-gifts" class="screen bg-custom" style="background-image: url('hinh_bg_6.jpg');">
+        <div class="glass-box fade-in-up">
+            <h2 class="romantic-font title-medium">Món quà bí mật 🎁</h2>
+            <div class="gifts-container">
+                <div id="gift-box-1" class="simple-gift-wrapper" onclick="openGiftQuiz(1)">
+                    <img id="gift-closed-1" src="Present.png" class="gift-img bounce-3d" alt="Hộp quà 1">
+                    <div id="gift-opened-1" class="gift-opened-content" style="display: none;">
+                        <img src="otto xiaozhi.png" alt="Món quà" class="gift-item-img">
+                        <span class="gift-item-name">Chatbot AI Xiaozhi OTTO</span>
+                    </div>
+                </div>
+                <div id="gift-box-2" class="simple-gift-wrapper delay-anim" onclick="openGiftQuiz(2)">
+                    <img id="gift-closed-2" src="Present.png" class="gift-img bounce-3d" alt="Hộp quà 2">
+                    <div id="gift-opened-2" class="gift-opened-content" style="display: none;">
+                        <img src="YSL.png" alt="Món quà" class="gift-item-img">
+                        <span class="gift-item-name">YSL Yves Saint Laurent Loveshine Candy Glow 44B</span>
+                    </div>
+                </div>
+                <div id="gift-box-3" class="simple-gift-wrapper delay-anim" onclick="openGiftQuiz(3)">
+                    <img id="gift-closed-3" src="Present.png" class="gift-img bounce-3d" alt="Hộp quà 3">
+                    <div id="gift-opened-3" class="gift-opened-content" style="display: none;">
+                        <img src="BanhSN.png" alt="Món quà" class="gift-item-img">
+                        <span class="gift-item-name">Bánh Sinh Nhật</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="puzzle-section" class="mt-20">
+                <p class="puzzle-note">🔒 Bấm vào từng hộp quà để trả lời câu hỏi giải mã nhé!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-timeline" class="screen bg-custom" style="background-image: url('hinh_bg_7.jpg');">
+        <div class="timeline-wrapper fade-in-up">
+            <h2 class="romantic-font title-medium">Hành trình của chúng mình 🚀</h2>
+            <button class="btn-pink pulse-anim" id="btn-timeline" onclick="advanceTimeline()">Xuất phát</button>
+            
+            <div class="candy-map">
+                <!-- ĐÃ FIX: Rút ngắn viewBox và đường nét đứt để kết thúc chính xác tại 1280px -->
+                <svg class="map-path" style="overflow: visible;" viewBox="0 0 1300 170" preserveAspectRatio="none">
+                    <path id="journey-line" d="M -100,85 L 80,85 Q 180,-25 280,85 T 480,85 T 680,85 T 880,85 T 1080,85 T 1280,85" fill="none" stroke="rgba(255, 133, 161, 0.6)" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 15"/>
+                </svg>
+
+                <div id="node-1" class="node big-node hidden-node" style="left: 80px; top: 85px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'TCV.jpg'}, 
+                        {type:'video', src:'TCV.mp4'},
+                        {type:'video', src:'TCV1.mp4'},
+                        {type:'video', src:'TCV2.mp4'},
+                        {type:'video', src:'TCV3.mp4'},
+                        {type:'video', src:'TCV4.mp4'},
+                        {type:'video', src:'TCV5.mp4'},
+                        {type:'video', src:'TCV6.mp4'},
+                        {type:'video', src:'TCV7.mp4'},
+                        {type:'video', src:'TCV8.mp4'},
+                        {type:'video', src:'TCV9.mp4'},
+                        {type:'video', src:'TCV10.mp4'},
+                        {type:'video', src:'TCV11.mp4'},
+                        {type:'video', src:'TCV12.mp4'},
+                        {type:'video', src:'TCV13.mp4'},
+                        {type:'video', src:'TCV14.mp4'},
+                        {type:'video', src:'TCV15.mp4'},
+                        {type:'video', src:'TCV16.mp4'},
+                        {type:'video', src:'TCV17.mp4'},
+                        {type:'video', src:'TCV18.mp4'},
+                        {type:'video', src:'TCV19.mp4'}
+                     ])"><span class="node-date" style="top: 65px;">20/06</span></div>
+                <div id="node-2" class="node big-node hidden-node" style="left: 180px; top: 30px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'MG.jpg'},
+                        {type:'img', src:'MG1.jpg'},
+                        {type:'img', src:'MG2.jpg'},
+                        {type:'img', src:'MG3.jpg'},
+                        {type:'img', src:'MG4.jpg'},
+                        {type:'img', src:'MG5.jpg'},
+                        {type:'video', src:'MG.mp4'},
+                        {type:'img', src:'MG6.jpg'},
+                        {type:'img', src:'MG7.jpg'},
+                        {type:'img', src:'MG8.jpg'},
+                        {type:'img', src:'MG9.jpg'},
+                        {type:'img', src:'MG10.jpg'},
+                        {type:'video', src:'MG1.mp4'},
+                        {type:'img', src:'MG11.jpg'},
+                        {type:'img', src:'MG12.jpg'},
+                        {type:'img', src:'MG13.jpg'},
+                        {type:'img', src:'MG14.jpg'},
+                        {type:'img', src:'MG15.jpg'},
+                        {type:'video', src:'MG2.mp4'},
+                        {type:'img', src:'MG16.jpg'},
+                        {type:'img', src:'MG17.jpg'},
+                        {type:'img', src:'MG18.jpg'},
+                        {type:'img', src:'MG19.jpg'},
+                        {type:'img', src:'MG20.jpg'},
+                        {type:'img', src:'MG21.jpg'}
+                     ])"><span class="node-date" style="top: 65px;">23/07</span></div>
+                <div id="node-3" class="node big-node hidden-node" style="left: 280px; top: 85px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'SP.jpg'},
+                        {type:'video', src:'SP.mp4'},
+                        {type:'video', src:'SP1.mp4'},
+                        {type:'video', src:'SP2.mp4'},
+                        {type:'video', src:'SP3.mp4'},
+                        {type:'video', src:'SP4.mp4'},
+                        {type:'video', src:'SP5.mp4'},
+                        {type:'video', src:'SP6.mp4'},
+                        {type:'video', src:'SP7.mp4'},
+                        {type:'video', src:'SP8.mp4'}
+                     ])"><span class="node-date" style="top: -35px;">31/07</span></div>
+                <div id="node-4" class="node big-node hidden-node" style="left: 380px; top: 140px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'NO.jpg'},
+                        {type:'img', src:'NO1.jpg'},
+                        {type:'img', src:'NO2.jpg'},
+                        {type:'img', src:'NO3.jpg'},
+                        {type:'img', src:'NO4.jpg'},
+                        {type:'img', src:'NO5.jpg'},
+                        {type:'img', src:'NO6.jpg'},
+                        {type:'img', src:'NO7.jpg'},
+                        {type:'img', src:'NO8.jpg'},
+                        {type:'img', src:'NO9.jpg'},
+                        {type:'img', src:'NO10.jpg'},
+                        {type:'img', src:'NO11.jpg'},
+                        {type:'img', src:'NO12.jpg'},
+                        {type:'img', src:'NO13.jpg'},
+                        {type:'img', src:'NO14.jpg'},
+                        {type:'img', src:'NO15.jpg'},
+                        {type:'img', src:'NO16.jpg'},
+                        {type:'img', src:'NO17.jpg'},
+                        {type:'img', src:'NO18.jpg'},
+                        {type:'img', src:'NO19.jpg'},
+                        {type:'img', src:'NO20.jpg'},
+                        {type:'img', src:'NO21.jpg'},
+                        {type:'img', src:'NO22.jpg'},
+                        {type:'img', src:'NO23.jpg'},
+                        {type:'img', src:'NO24.jpg'},
+                        {type:'img', src:'NO25.jpg'},
+                        {type:'img', src:'NO26.jpg'},
+                        {type:'img', src:'NO27.jpg'},
+                        {type:'img', src:'NO28.jpg'},
+                        {type:'img', src:'NO29.jpg'},
+                        {type:'img', src:'NO30.jpg'},
+                        {type:'img', src:'NO31.jpg'},
+                        {type:'img', src:'NO32.jpg'},
+                        {type:'img', src:'NO33.jpg'},
+                        {type:'img', src:'NO34.jpg'},
+                        {type:'img', src:'NO35.jpg'},
+                        {type:'img', src:'NO36.jpg'}
+                     ])"><span class="node-date" style="top: -35px;">23/07 - NOW</span></div>
+                <div id="node-5" class="node big-node hidden-node" style="left: 480px; top: 85px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'HC.jpg'},
+                        {type:'img', src:'HC1.jpg'},
+                        {type:'video', src:'HC.mp4'},
+                        {type:'img', src:'HC2.jpg'},
+                        {type:'img', src:'HC3.jpg'},
+                        {type:'video', src:'HC1.mp4'},
+                        {type:'img', src:'HC4.jpg'},
+                        {type:'img', src:'HC5.jpg'},
+                        {type:'video', src:'HC2.mp4'},
+                        {type:'img', src:'HC6.jpg'},
+                        {type:'img', src:'HC7.jpg'},
+                        {type:'video', src:'HC3.mp4'},
+                        {type:'img', src:'HC8.jpg'},
+                        {type:'img', src:'HC9.jpg'},
+                        {type:'video', src:'HC4.mp4'},
+                        {type:'img', src:'HC10.jpg'},
+                        {type:'img', src:'HC11.jpg'},
+                        {type:'video', src:'HC5.mp4'},
+                        {type:'img', src:'HC12.jpg'},
+                        {type:'img', src:'HC13.jpg'},
+                        {type:'video', src:'HC6.mp4'},
+                        {type:'img', src:'HC14.jpg'},
+                        {type:'img', src:'HC15.jpg'},
+                        {type:'video', src:'HC7.mp4'},
+                        {type:'img', src:'HC16.jpg'},
+                        {type:'img', src:'HC17.jpg'},
+                        {type:'video', src:'HC8.mp4'},
+                        {type:'video', src:'HC9.mp4'} 
+                     ])"><span class="node-date" style="top: 65px;">07/08</span></div>
+                <div id="node-6" class="node big-node hidden-node" style="left: 580px; top: 30px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'TART.jpg'},
+                        {type:'video', src:'TART.mp4'},
+                        {type:'img', src:'TART1.jpg'},
+                        {type:'video', src:'TART1.mp4'},
+                        {type:'img', src:'TART2.jpg'},
+                        {type:'video', src:'TART2.mp4'}
+                     ])"><span class="node-date" style="top: 65px;">08/08</span></div>
+                <div id="node-7" class="node big-node hidden-node" style="left: 680px; top: 85px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'Q.jpg'},
+                        {type:'img', src:'Q1.jpg'},
+                        {type:'video', src:'Q.mp4'},
+                        {type:'img', src:'Q2.jpg'},
+                        {type:'img', src:'Q3.jpg'},
+                        {type:'video', src:'Q1.mp4'},
+                        {type:'img', src:'Q3.jpg'},
+                        {type:'video', src:'Q2.mp4'},
+                        {type:'img', src:'Q4.jpg'},
+                        {type:'video', src:'Q3.mp4'},
+                        {type:'img', src:'Q5.jpg'},
+                        {type:'video', src:'Q4.mp4'},
+                        {type:'img', src:'Q6.jpg'}
+                     ])"><span class="node-date" style="top: -35px;">14/08</span></div>
+                <div id="node-8" class="node big-node hidden-node" style="left: 780px; top: 140px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'YEU.jpg'},
+                        {type:'video', src:'YEU.mp4'},
+                        {type:'img', src:'YEU1.jpg'},
+                        {type:'video', src:'YEU1.mp4'},
+                        {type:'img', src:'YEU2.jpg'},
+                        {type:'video', src:'YEU2.mp4'},
+                        {type:'img', src:'YEU3.jpg'},
+                        {type:'video', src:'YEU3.mp4'},
+                        {type:'img', src:'YEU4.jpg'},
+                        {type:'video', src:'YEU4.mp4'},
+                        {type:'img', src:'YEU5.jpg'},
+                        {type:'video', src:'YEU5.mp4'},
+                        {type:'img', src:'YEU6.jpg'},
+                        {type:'video', src:'YEU6.mp4'},
+                        {type:'img', src:'YEU7.jpg'},
+                        {type:'video', src:'YEU7.mp4'},
+                        {type:'img', src:'YEU8.jpg'},
+                        {type:'video', src:'YEU8.mp4'},
+                        {type:'img', src:'YEU9.jpg'},
+                        {type:'video', src:'YEU9.mp4'},
+                        {type:'img', src:'YEU10.jpg'},
+                        {type:'video', src:'YEU10.mp4'},
+                        {type:'img', src:'YEU11.jpg'}
+                     ])"><span class="node-date" style="top: -35px;">29/08</span></div>
+                <div id="node-9" class="node big-node hidden-node" style="left: 880px; top: 85px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'SL.jpg'},
+                        {type:'video', src:'SL.mp4'},
+                        {type:'img', src:'SL1.jpg'},
+                        {type:'img', src:'SL2.jpg'},
+                        {type:'img', src:'SL3.jpg'},
+                        {type:'img', src:'SL4.jpg'},
+                        {type:'img', src:'SL5.jpg'},
+                        {type:'img', src:'SL6.jpg'},
+                        {type:'img', src:'SL7.jpg'},
+                        {type:'img', src:'SL8.jpg'},
+                        {type:'img', src:'SL9.jpg'},
+                        {type:'img', src:'SL10.jpg'},
+                        {type:'img', src:'SL11.jpg'}
+                     ])"><span class="node-date" style="top: 65px;">06/09</span></div>
+                <div id="node-10" class="node big-node hidden-node" style="left: 980px; top: 30px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'MC.jpg'},
+                        {type:'video', src:'MC.mp4'},
+                        {type:'img', src:'MC1.jpg'},
+                        {type:'img', src:'MC2.jpg'},
+                        {type:'img', src:'MC3.jpg'},
+                        {type:'img', src:'MC4.jpg'},
+                        {type:'img', src:'MC5.jpg'},
+                        {type:'img', src:'MC6.jpg'},
+                        {type:'img', src:'MC7.jpg'},
+                        {type:'img', src:'MC8.jpg'},
+                        {type:'img', src:'MC9.jpg'},
+                        {type:'img', src:'MC10.jpg'},
+                        {type:'img', src:'MC11.jpg'},
+                        {type:'img', src:'MC12.jpg'},
+                        {type:'img', src:'MC13.jpg'},
+                        {type:'img', src:'MC14.jpg'}
+                     ])"><span class="node-date" style="top: 65px;">20/09</span></div>
+                <div id="node-11" class="node big-node hidden-node" style="left: 1080px; top: 85px;" 
+                     onclick="openGalaxy([
+                        {type:'img', src:'BL.jpg'},
+                        {type:'video', src:'BL.mp4'},
+                        {type:'img', src:'BL1.jpg'},
+                        {type:'img', src:'BL2.jpg'},
+                        {type:'img', src:'BL3.jpg'},
+                        {type:'img', src:'BL4.jpg'},
+                        {type:'img', src:'BL5.jpg'},
+                        {type:'img', src:'BL6.jpg'},
+                        {type:'img', src:'BL7.jpg'},
+                        {type:'img', src:'BL8.jpg'},
+                        {type:'img', src:'BL9.jpg'},
+                        {type:'img', src:'BL10.jpg'},
+                        {type:'img', src:'BL11.jpg'},
+                        {type:'img', src:'BL12.jpg'},
+                        {type:'img', src:'BL13.jpg'},
+                        {type:'img', src:'BL14.jpg'},
+                        {type:'img', src:'BL15.jpg'},
+                        {type:'video', src:'BL1.mp4'},
+                        {type:'img', src:'BL16.jpg'},
+                        {type:'img', src:'BL17.jpg'},
+                        {type:'img', src:'BL18.jpg'},
+                        {type:'img', src:'BL19.jpg'},
+                        {type:'img', src:'BL20.jpg'},
+                        {type:'img', src:'BL21.jpg'},
+                        {type:'video', src:'BL2.mp4'},
+                        {type:'img', src:'BL22.jpg'},
+                        {type:'img', src:'BL23.jpg'},
+                        {type:'img', src:'BL24.jpg'},
+                        {type:'img', src:'BL25.jpg'},
+                        {type:'img', src:'BL26.jpg'},
+                        {type:'img', src:'BL27.jpg'},
+                        {type:'img', src:'BL28.jpg'}
+                     ])"><span class="node-date" style="top: -35px;">02/10</span></div>
+
+                <div id="node-end" style="position:absolute; left: 1280px; top: 85px; pointer-events:none;"><span class="coming-soon-text" style="top: -45px; position: relative;">Coming soon...</span></div>
+                
+                <div id="light-dot" class="light-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRANG 8: LỜI CHÚC TRÊN GIẤY THƯ -->
+    <section id="section-wishes" class="screen bg-custom" style="background-image: url('hinh_bg_8.jpg');">
+        <div class="letter-paper fade-in-up">
+            <h2 class="romantic-font title-medium" style="text-align: center; color: var(--pink-dark);">Gửi tình yêu của anh...</h2>
+           <div class="letter-content">
+    <p>Gửi công chúa của anh,</p>
+    <p>Chúc mừng sinh nhật em! Chẳng biết nói văn vẻ thế nào, nhưng thật sự gặp được em và yêu em là điều may mắn tuyệt vời nhất mà anh có.</p>
+    <p>Tuổi mới chúc em mãi xinh xắn, lúc nào cũng rạng rỡ và đạt được những gì em muốn. Và tất nhiên là... ngày càng mê anh, yêu anh nhiều hơn nữa rồi!</p>
+    <p>Chặng đường phía trước còn dài, chỉ mong sinh nhật năm nào của em, hai đứa mình cũng được ăn mừng cùng nhau thế này.</p>
+    <p>Happy 20th Birthday! Mãi yêu em! 🥰</p>
+</div>
+        </div>
+    </section>
+
+    <!-- TRANG 9: THƯ MỜI -->
+    <section id="section-invitation" class="screen bg-custom" style="background-image: url('hinh_bg_9.jpg');">
+        <div class="invitation-card fade-in-up">
+            <div class="mail-icon">💌</div>
+            <h1 class="invite-title">OFFICIAL INVITATION</h1>
+            <p class="invite-subtitle">DATING REQUEST CARD</p>
+            
+            <div class="avatar-frame">
+                <img src="Em.jpg" alt="Princess">
+            </div>
+            
+            <p class="invite-to">Trân trọng mời: <span class="romantic-font">Công Chúa Của Anh</span></p>
+            <hr class="dashed-line">
+            
+            <div class="invite-details">
+                <p><strong>📅 Ngày hẹn:</strong><br>Thứ Tư, Ngày 13 Tháng 11 năm 2026</p>
+                <p><strong>🕒 Thời gian:</strong><br>19:00 tối</p>
+                <p><strong>🗺 Địa điểm:</strong><br>Kobeya Biên Hoà</p>
+                <div style="display:flex; align-items:center; gap: 10px;">
+                    <strong>👗 Dress code:</strong>
+                    <div id="invite-dresscode-colors" style="display:flex; gap:8px;">
+                        <span style="font-size: 14px; font-weight: normal; color: #999;">(Chưa chọn màu)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="dashed-line">
+            <p class="invite-quote">"Sự hiện diện của em là niềm vinh hạnh lớn nhất đời anh.<br>See you, my love! 🥰"</p>
+        </div>
+    </section>
+
+    <!-- ================= MODAL CÁC LOẠI ĐỂ TẠO HIỆU ỨNG ================= -->
+    <div id="quiz-modal" class="chat-modal-overlay">
+        <div class="chat-modal-box">
+            <span class="close-chat-btn" onclick="closeQuizModal()">×</span>
+            <h2 class="romantic-font" style="color: var(--pink-dark); margin-top: 0; font-size: 2.5rem;">Giải mã phần quà</h2>
+            
+            <div id="quiz-chat-log" class="chat-log">
+                <div class="msg-bubble msg-bot" id="welcome-msg">Xác nhận để bắt đầu giải mã 3 câu trắc nghiệm nha!</div>
+            </div>
+            
+            <button id="btn-start-quiz" class="btn-pink" style="width: 100%;" onclick="startQuizTest()">Xác nhận giải mã</button>
+            
+            <div id="quiz-options-area" class="quiz-options">
+                <button class="quiz-opt-btn" onclick="submitQuizAns(0)" id="opt-0">A. Lựa chọn 1</button>
+                <button class="quiz-opt-btn" onclick="submitQuizAns(1)" id="opt-1">B. Lựa chọn 2</button>
+                <button class="quiz-opt-btn" onclick="submitQuizAns(2)" id="opt-2">C. Lựa chọn 3</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. DẢI NGÂN HÀ CUỘN -->
+    <div id="galaxy-view" class="galaxy-modal">
+        <div class="galaxy-back" onclick="closeGalaxy()">❮ <span class="galaxy-tooltip">Bấm để quay lại</span></div>
+        <div class="galaxy-content" id="galaxy-content"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
