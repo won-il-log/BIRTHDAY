@@ -485,10 +485,21 @@ function openGalaxy(mediaArray) {
             el.src = item.src;
             el.autoplay = true; 
             el.loop = true; 
-            el.playsInline = true;
             el.muted = true;
-            el.setAttribute('muted', '');
             el.volume = 0;
+            el.setAttribute('muted', 'true');
+            
+            // 3 LỆNH CHÍ MẠNG ÉP ĐIỆN THOẠI PLAY VIDEO
+            el.setAttribute('playsinline', ''); // Phải viết thường
+            el.setAttribute('webkit-playsinline', ''); 
+            
+            // Ép hệ thống chạy
+            setTimeout(() => {
+                let playPromise = el.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => console.log("Đợi người dùng tương tác"));
+                }
+            }, 100);
         }
         if (el) {
             contentBox.appendChild(el);
