@@ -79,14 +79,14 @@ let touchStartY = 0;
 let touchEndY = 0;
 
 window.addEventListener('touchstart', e => {
-    // Không bắt sự kiện vuốt khi đang thao tác Bản đồ hoặc Vòng màu
-    if (e.target.closest('.timeline-wrapper') || e.target.id === 'colorWheel') return;
+    // Bỏ qua vuốt nếu đang chạm vào Hành trình, Vòng màu, Dải ngân hà, hoặc Khung Chat
+    if (e.target.closest('.timeline-wrapper') || e.target.id === 'colorWheel' || e.target.closest('#galaxy-view') || e.target.closest('.chat-modal-box')) return;
     touchStartX = e.changedTouches[0].screenX;
     touchStartY = e.changedTouches[0].screenY;
 }, {passive: true});
 
 window.addEventListener('touchend', e => {
-    if (e.target.closest('.timeline-wrapper') || e.target.id === 'colorWheel') return;
+    if (e.target.closest('.timeline-wrapper') || e.target.id === 'colorWheel' || e.target.closest('#galaxy-view') || e.target.closest('.chat-modal-box')) return;
     touchEndX = e.changedTouches[0].screenX;
     touchEndY = e.changedTouches[0].screenY;
     handleSwipe();
@@ -96,10 +96,8 @@ function handleSwipe() {
     let swipeX = touchStartX - touchEndX;
     let swipeY = Math.abs(touchStartY - touchEndY);
     
-    // Yêu cầu vuốt ngang đủ dài (trên 50px) và không bị vuốt dọc quá nhiều (dưới 50px) 
-    // Tránh bị nhảy trang khi nàng đang vuốt lên xuống để đọc bài
-    if (swipeX > 50 && swipeY < 50) handleNavigation('next'); // Vuốt sang trái -> Qua trang mới
-    if (swipeX < -50 && swipeY < 50) handleNavigation('prev'); // Vuốt sang phải -> Về trang cũ
+    if (swipeX > 50 && swipeY < 50) handleNavigation('next'); 
+    if (swipeX < -50 && swipeY < 50) handleNavigation('prev'); 
 }
 
 function triggerTransition(callback) {
